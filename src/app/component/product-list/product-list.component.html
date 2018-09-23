@@ -7,4 +7,27 @@
           {{product.isAvailable}}
       </div>
     </li>
+
 </ul>
+
+<div>
+    <div>
+        Name : <input type="text" name="name" #name>
+    </div>
+    <div>
+        Description:  <input type="text" name="description" #description>
+    </div>
+    <div>
+        Price: <input type="text" name="price" #price>
+    </div>
+    <div>
+        IsAvailable: <input type="text" name="isAvailable" #isAvailable>
+    </div>
+
+    <button (click)='addProduct(
+    {"name": name.value,
+    "description": description.value,
+    "price": price.value,
+    "isAvailable": isAvailable.value}
+    )'> Add product</button>
+</div>
