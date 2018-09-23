@@ -1,12 +1,14 @@
 Active product
-<p>
-  {{name}},
-  {{description}},
-  {{price}},
-  {{category}},
-  {{isAvailable}}
-  <button (click)="onBuy()"> Buy</button>
-</p>
+
+{{name}},
+{{description}},
+{{price}},
+{{category}},
+{{isAvailable}}
+
+<button (click)='onBuy()'> Buy
+</button>
+
 
 <app-product-list (selectProduct)="setActive($event)">
 </app-product-list>

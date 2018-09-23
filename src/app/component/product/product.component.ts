@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Category } from '../../shared/category.enum';
 import {Product} from '../../shared/model/product.model';
+import {CartService} from '../../service/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -15,12 +16,13 @@ export class ProductComponent implements OnInit {
   category: Category = Category.COMPUTER;
   isAvailable = true;
 
-  constructor() { }
+  constructor(public cartService: CartService) { }
 
   ngOnInit() {
   }
 
   onBuy(): void {
+    this.cartService.add(new Product(this.name, this.description, this.price, this.category, this.isAvailable));
     console.log('Product was bought');
   }
 
