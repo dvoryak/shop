@@ -16,7 +16,7 @@ export class ProductComponent implements OnInit {
   category: Category = Category.COMPUTER;
   isAvailable = true;
 
-  constructor(public cartService: CartService) { }
+  constructor(private cartService: CartService) { }
 
   ngOnInit() {
   }

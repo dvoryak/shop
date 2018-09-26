@@ -9,14 +9,12 @@ import {Category} from '../../shared/category.enum';
     styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-    private productService: ProductService;
     products: Product[];
 
     @Output()
     selectProduct: EventEmitter<Product> = new EventEmitter<Product>();
 
-    constructor(productService: ProductService) {
-        this.productService = productService;
+    constructor(private productService: ProductService) {
         productService.getProducts().subscribe((products) => this.products = products);
     }
 

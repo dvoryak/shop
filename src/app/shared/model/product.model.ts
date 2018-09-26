@@ -2,12 +2,11 @@ import {ProductInterface} from './product.interface';
 import {Category} from '../category.enum';
 
 export class Product implements ProductInterface {
-    name: string;
-    description: string;
-    price: number;
-    category: Category;
-    isAvailable: boolean;
-    constructor(name: string, description: string, price: number, category: Category, isAvailable: boolean) {
+    constructor(public name: string,
+                public description: string,
+                public price: number,
+                public category: Category,
+                public isAvailable: boolean) {
         this.name = name;
         this.description = description;
         this.price = price;

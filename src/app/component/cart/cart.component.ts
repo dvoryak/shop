@@ -10,7 +10,7 @@ import {Product} from '../../shared/model/product.model';
 export class CartComponent implements OnInit {
   products: Product[];
 
-  constructor(public cartService: CartService) {
+  constructor(private cartService: CartService) {
     cartService.findAll().subscribe((products) => this.products = products);
   }
 
