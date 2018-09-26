@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ProductService} from '../../../service/product.service';
 import {Product} from '../../../shared/model/product.model';
 import {Category} from '../../../shared/category.enum';
+import {CartService} from '../../../service/cart.service';
 
 @Component({
     selector: 'app-product-list',
@@ -10,12 +11,15 @@ import {Category} from '../../../shared/category.enum';
 })
 export class ProductListComponent implements OnInit {
     products: Product[];
+    cartProducts: Product[];
 
     @Output()
     selectProduct: EventEmitter<Product> = new EventEmitter<Product>();
 
-    constructor(private productService: ProductService) {
+    constructor(private productService: ProductService,
+                private cartService: CartService) {
         productService.getProducts().subscribe((products) => this.products = products);
+        cartService.findAll().subscribe((products) => this.cartProducts = products);
     }
 
     ngOnInit() {
@@ -23,12 +27,15 @@ export class ProductListComponent implements OnInit {
 
     onSelect(product: Product): void {
         console.log('Select and emit product');
-        console.log(product);
         this.selectProduct.emit(product);
     }
 
     addProduct(product: Product): void {
-       console.log(product);
        this.productService.addProduct(product);
+    }
+
+    onBuy(product: Product): void {
+        this.cartService.add(new Product(product.name, product.description, product.price, product.category, product.isAvailable));
+        console.log('Product was bought');
     }
 }

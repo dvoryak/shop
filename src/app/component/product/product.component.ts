@@ -21,13 +21,7 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
   }
 
-  onBuy(): void {
-    this.cartService.add(new Product(this.name, this.description, this.price, this.category, this.isAvailable));
-    console.log('Product was bought');
-  }
-
   setActive(product: Product): void {
-    console.log(product);
     this.name = product.name;
     this.description = product.description;
     this.category = product.category;

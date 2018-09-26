@@ -21,7 +21,6 @@ export class CartService {
   }
 
   add(product: Product): void {
-    console.log(product);
     this.products.push(product);
     this.subject.next(this.products);
   }

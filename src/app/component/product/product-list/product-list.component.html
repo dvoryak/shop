@@ -3,12 +3,14 @@
 
     <div class="panel-body">
         <ul list-group>
-            <li class="list-group-item list-group-item-success" *ngFor="let product of products" (click)="onSelect(product)">
+            <li class="list-group-item list-group-item-success" *ngFor="let product of products">
                 <div>
                     {{product.name}}
                     {{product.description}}
                     {{product.price}}
                     {{product.isAvailable}}
+                    <button type="button" class="btn btn-info" (click)="onSelect(product)"> Details </button>
+                    <button type="button" class="btn btn-primary" (click)="onBuy(product)"> Buy </button>
                 </div>
             </li>
         </ul>
