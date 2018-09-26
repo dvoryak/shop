@@ -9,8 +9,10 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 export class ProductService {
 
   products: Product[] =  [
-      new Product('IPhone7', 'Cool phone', 700, Category.MOBILE_PHONE, true),
-      new Product('IPhone6', 'Nice phone', 500, Category.MOBILE_PHONE, false)
+      new Product(1, 'IPhone7', 'Cool phone', 700, Category.MOBILE_PHONE, 'http://qps.ru/JrUca',
+          true),
+      new Product(2, 'IPhone6', 'Nice phone', 500, Category.MOBILE_PHONE, 'https://goo.gl/YWX5NG',
+          false)
   ];
 
   private subject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products);

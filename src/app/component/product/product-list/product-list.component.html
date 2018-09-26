@@ -9,6 +9,7 @@
                     {{product.description}}
                     {{product.price}}
                     {{product.isAvailable}}
+                    <img src="{{product.img}}" width="200" height="200">
                     <button type="button" class="btn btn-info" (click)="onSelect(product)"> Details </button>
                     <button type="button" class="btn btn-primary" (click)="onBuy(product)"> Buy </button>
                 </div>
