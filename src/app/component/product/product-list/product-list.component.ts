@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ProductService} from '../../service/product.service';
-import {Product} from '../../shared/model/product.model';
-import {Category} from '../../shared/category.enum';
+import {ProductService} from '../../../service/product.service';
+import {Product} from '../../../shared/model/product.model';
+import {Category} from '../../../shared/category.enum';
 
 @Component({
     selector: 'app-product-list',
