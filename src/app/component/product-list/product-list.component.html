@@ -1,0 +1,60 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Products</div>
+
+    <div class="panel-body">
+        <ul list-group>
+            <li class="list-group-item list-group-item-success" *ngFor="let product of products" (click)="onSelect(product)">
+                <div>
+                    {{product.name}}
+                    {{product.description}}
+                    {{product.price}}
+                    {{product.isAvailable}}
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <form>
+
+        <div class="form-group">
+            <label for="name"> Name </label>
+            <input type="text"
+                   id="name"
+                   class="form-control" #name
+                   placeholder="Product name">
+        </div>
+        <div class="form-group">
+            <label for="description"> Description </label>
+            <input type="text"
+                   id="description"
+                   class="form-control" #description
+                   placeholder="Product description">
+        </div>
+
+        <div class="form-group">
+            <label for="price"> Price </label>
+            <input type="text"
+                   id="price"
+                   class="form-control" #price
+                   placeholder="Product price">
+        </div>
+
+        <div class="form-group">
+            <label for="isAvailable"> Available </label>
+            <input type="text"
+                   id="isAvailable"
+                   class="form-control" #isAvailable
+                   placeholder="isAvailable">
+        </div>
+
+
+        <button type="button" class="btn btn-primary" (click)='addProduct(
+            {"name": name.value,
+            "description": description.value,
+            "price": price.value,
+            "isAvailable": isAvailable.value}
+            )'> Add product
+        </button>
+    </form>
+</div>
+

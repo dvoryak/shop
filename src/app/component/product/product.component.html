@@ -1,0 +1,16 @@
+
+<div class="container">
+    Active product
+    {{name}},
+    {{description}},
+    {{price}},
+    {{category}},
+    {{isAvailable}}
+    <button class="bnt btn-success" (click)='onBuy()'> Buy
+    </button>
+</div>
+
+
+
+<app-product-list (selectProduct)="setActive($event)">
+</app-product-list>
