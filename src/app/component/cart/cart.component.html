@@ -7,9 +7,7 @@
     </div>
     <ul>
         <li *ngFor="let product of products">
-            <ul>
-                <li>{{product.getDescription()}}</li>
-            </ul>
+            <app-cart-item [product]="product"></app-cart-item>
         </li>
     </ul>
 </div>
