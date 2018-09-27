@@ -33,6 +33,17 @@ export class CartService {
     this.subject.next(this.products);
   }
 
+  getTotalAmount(): number {
+    return this.products
+        .map((product) => product.price * product.quantity)
+        .reduce((a, b) => a + b, 0);
+  }
+
+  getTotalCount(): number {
+    return this.products.length;
+  }
+
+
   private isProductExist(productId: number): boolean {
     return this.products
         .filter((product) => product.id === productId)
