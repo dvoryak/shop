@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {ProductModule} from './component/product/product.module';
 import {CartModule} from './component/cart/cart.module';
+import { ShColorDirective } from './shared/directive/sh-color.directive';
 
 @NgModule({
     declarations: [
