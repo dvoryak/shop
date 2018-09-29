@@ -1,6 +1,6 @@
 import {Component, DoCheck, IterableDiffers, OnInit} from '@angular/core';
-import {CartService} from '../../service/cart.service';
-import {Product} from '../../shared/model/product.model';
+import {CartService} from '../../services/cart.service';
+import {Product} from '../../../products/model/product.model';
 
 @Component({
     selector: 'app-cart',

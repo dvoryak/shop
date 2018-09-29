@@ -1,5 +1,5 @@
-import {Product} from './product.model';
-import {Category} from '../category.enum';
+import {Product} from '../../products/model/product.model';
+import {Category} from '../../shared/category.enum';
 
 export class CartProduct extends Product {
     constructor(id: number,

@@ -1,8 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {ProductService} from '../../../service/product.service';
-import {Product} from '../../../shared/model/product.model';
+import {ProductService} from '../../service/product.service';
+import {Product} from '../../model/product.model';
 import {Category} from '../../../shared/category.enum';
-import {CartService} from '../../../service/cart.service';
+import {CartService} from '../../../cart/services/cart.service';
 
 @Component({
     selector: 'app-product-list',
@@ -26,7 +26,7 @@ export class ProductListComponent implements OnInit {
     }
 
     onSelect(product: Product): void {
-        console.log('Select and emit product');
+        console.log('Select and emit products');
         this.selectProduct.emit(product);
     }
 

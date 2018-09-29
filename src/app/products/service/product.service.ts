@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Product} from '../shared/model/product.model';
-import {Category} from '../shared/category.enum';
+import {Product} from '../model/product.model';
+import {Category} from '../../shared/category.enum';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 
 @Injectable({
