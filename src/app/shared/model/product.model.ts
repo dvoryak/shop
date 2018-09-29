@@ -9,13 +9,6 @@ export class Product implements ProductInterface {
                 public category: Category,
                 public img: string,
                 public isAvailable: boolean) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-        this.img = img;
-        this.isAvailable = isAvailable;
     }
     getDescription(): string {
         return  this.name + ' ' +
