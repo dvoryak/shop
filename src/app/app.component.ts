@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'app';
+export class AppComponent implements AfterViewInit {
+
+    @ViewChild('title')
+    appTitle: ElementRef;
+
+    ngAfterViewInit(): void {
+        (<HTMLInputElement> this.appTitle.nativeElement).outerText = 'Shop';
+        console.log(this.appTitle);
+    }
+
+
 }

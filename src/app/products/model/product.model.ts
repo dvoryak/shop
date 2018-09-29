@@ -1,17 +1,14 @@
 import {ProductInterface} from './product.interface';
-import {Category} from '../category.enum';
+import {Category} from '../../shared/category.enum';
 
 export class Product implements ProductInterface {
-    constructor(public name: string,
+    constructor(public id: number,
+                public name: string,
                 public description: string,
                 public price: number,
                 public category: Category,
+                public img: string,
                 public isAvailable: boolean) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.category = category;
-        this.isAvailable = isAvailable;
     }
     getDescription(): string {
         return  this.name + ' ' +

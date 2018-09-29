@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Category } from '../../shared/category.enum';
-import {Product} from '../../shared/model/product.model';
-import {CartService} from '../../service/cart.service';
+import { Category } from '../../../shared/category.enum';
+import {Product} from '../../model/product.model';
+import {CartService} from '../../../cart/services/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -21,13 +21,7 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
   }
 
-  onBuy(): void {
-    this.cartService.add(new Product(this.name, this.description, this.price, this.category, this.isAvailable));
-    console.log('Product was bought');
-  }
-
   setActive(product: Product): void {
-    console.log(product);
     this.name = product.name;
     this.description = product.description;
     this.category = product.category;

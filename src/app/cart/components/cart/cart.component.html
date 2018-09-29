@@ -7,9 +7,13 @@
     </div>
     <ul>
         <li *ngFor="let product of products">
-            <ul>
-                <li>{{product.getDescription()}}</li>
-            </ul>
+            <app-cart-item appShColor [product]="product"></app-cart-item>
         </li>
     </ul>
+    <div>
+        Total Amount: {{totalAmount | currency}}
+    </div>
+    <div>
+        Total Count: {{totalCount}}
+    </div>
 </div>
