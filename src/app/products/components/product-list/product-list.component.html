@@ -3,7 +3,7 @@
 
     <div class="panel-body">
         <ul list-group>
-            <li class="list-group-item list-group-item-success" *ngFor="let product of products">
+            <li class="list-group-item list-group-item-success" *ngFor="let product of productService.getProducts() | async">
                 <div>
                     {{product.name}}
                     {{product.description}}
