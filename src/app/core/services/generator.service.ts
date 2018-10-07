@@ -1,10 +1,19 @@
-import { Injectable } from '@angular/core';
-import {CoreModule} from '../core.module';
+import {InjectionToken} from '@angular/core';
+import {InputData} from '../../shared/input-data';
 
-@Injectable({
-  providedIn: CoreModule
-})
-export class GeneratorService {
+export const Generator = new InjectionToken<string>('Generator');
 
-  constructor() { }
+export function GeneratorService(count: number) {
+
+  return function(): string {
+    const data = new InputData().getData();
+    let out = '';
+    console.log(data);
+    for (let i = 0; i < count; i++) {
+      out = out + data[Math.floor(Math.random() * data.length)];
+    }
+    console.log(out);
+    return out;
+  };
+
 }

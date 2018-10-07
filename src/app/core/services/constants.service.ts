@@ -5,6 +5,14 @@ import {CoreModule} from '../core.module';
   providedIn: CoreModule
 })
 export class ConstantsService {
+  private obj = {
+    app: 'Product shop',
+    ver: '1.0'
+  };
 
   constructor() { }
+
+  getObj(): any {
+    return this.obj;
+  }
 }
