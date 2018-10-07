@@ -10,6 +10,7 @@ import {CartService} from '../../../cart/services/cart.service';
     styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+    title: string = 'Products';
     products: Product[];
     cartProducts: Product[];
 
