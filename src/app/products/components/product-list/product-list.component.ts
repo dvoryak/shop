@@ -30,10 +30,6 @@ export class ProductListComponent implements OnInit {
         this.selectProduct.emit(product);
     }
 
-    addProduct(product: Product): void {
-       this.productService.addProduct(product);
-    }
-
     onBuy(product: Product): void {
         this.cartService.add(new Product(product.id, product.name, product.description, product.price, product.category,
             product.img, product.isAvailable));

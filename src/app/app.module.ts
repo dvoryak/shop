@@ -7,6 +7,7 @@ import {CartModule} from './cart/components/cart.module';
 import { ContactUsComponent } from './contact-us/components/contact-us/contact-us.component';
 import {CoreModule} from './core/core.module';
 import {ContactUsModule} from './contact-us/contact-us.module';
+import {AppRoutingModule} from './app.routing.module';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,9 @@ import {ContactUsModule} from './contact-us/contact-us.module';
         BrowserModule,
         ProductModule,
         CartModule,
-        ContactUsModule
+        ContactUsModule,
+
+        AppRoutingModule
     ],
     providers: [],
     bootstrap: [AppComponent]
