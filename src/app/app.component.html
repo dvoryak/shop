@@ -21,6 +21,13 @@
                         </li>
                     </ul>
 
+                    <ul class="nav navbar-nav">
+                        <li routerLinkActive="active">
+                            <!--routerLink one-time binding-->
+                            <a routerLink="/admin">Admin</a>
+                        </li>
+                    </ul>
+
                     <app-cart></app-cart>
                 </div>
             </div>
@@ -28,7 +35,7 @@
         </nav>
 
 
-        <router-outlet></router-outlet>
-
+        <router-outlet>
+        </router-outlet>
     </div>
 </div>

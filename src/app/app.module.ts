@@ -8,6 +8,8 @@ import { ContactUsComponent } from './contact-us/components/contact-us/contact-u
 import {CoreModule} from './core/core.module';
 import {ContactUsModule} from './contact-us/contact-us.module';
 import {AppRoutingModule} from './app.routing.module';
+import {AdminModule} from './admin/admin.module';
+import {Router} from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -25,4 +27,7 @@ import {AppRoutingModule} from './app.routing.module';
     bootstrap: [AppComponent]
 })
 export class AppModule {
+    constructor(router: Router) {
+        console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+    }
 }
