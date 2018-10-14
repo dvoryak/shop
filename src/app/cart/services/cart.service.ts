@@ -13,7 +13,7 @@ export class CartService {
     constructor() {
     }
 
-    findAll(): Observable<Product[]> {
+    findAll(): Observable<CartProduct[]> {
         return this.subject.asObservable();
     }
 
