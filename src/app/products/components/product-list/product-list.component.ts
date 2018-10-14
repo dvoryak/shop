@@ -10,15 +10,15 @@ import {CartService} from '../../../cart/services/cart.service';
     styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-    products: Product[];
+    title: 'Products';
+    products: Promise<Product[]>;
     cartProducts: Product[];
 
     @Output()
     selectProduct: EventEmitter<Product> = new EventEmitter<Product>();
 
-    constructor(private productService: ProductService,
+    constructor(public productService: ProductService,
                 private cartService: CartService) {
-        productService.getProducts().subscribe((products) => this.products = products);
         cartService.findAll().subscribe((products) => this.cartProducts = products);
     }
 

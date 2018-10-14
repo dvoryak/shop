@@ -15,15 +15,14 @@ export class ProductService {
           false)
   ];
 
-  private subject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products);
+  private promise: Promise<Product[]> = Promise.resolve(this.products);
 
   constructor() {
   }
-  getProducts(): Observable<Product[]> {
-    return this.subject.asObservable();
+  getProducts(): Promise<Product[]> {
+    return this.promise;
   }
   addProduct(product: Product): void {
       this.products.push(product);
-      this.subject.next(this.products);
   }
 }

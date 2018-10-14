@@ -6,7 +6,7 @@ import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
-
+    date: Date = new Date();
     @ViewChild('title')
     appTitle: ElementRef;
 
