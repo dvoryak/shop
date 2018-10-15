@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ProductListComponent} from './products/components/product-list/product-list.component';
 import {ContactUsComponent} from './contact-us/components/contact-us/contact-us.component';
-import {AuthGuard} from './core/guards/auth.guard';
+import {LoginComponent} from './layout/components/login/login.component';
 
 const routes: Routes = [
     {
@@ -12,7 +12,6 @@ const routes: Routes = [
     },
     {
         path: 'contact',
-        canActivate: [AuthGuard],
         component: ContactUsComponent,
         data: {title: 'Contact us'}
     },
@@ -21,6 +20,10 @@ const routes: Routes = [
         loadChildren: './admin/admin.module#AdminModule',
         data: { title: 'Admin' }
     },
+    {
+        path: 'login',
+        component: LoginComponent
+    }
 ];
 
 @NgModule({

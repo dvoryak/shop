@@ -10,6 +10,7 @@ import {ContactUsModule} from './contact-us/contact-us.module';
 import {AppRoutingModule} from './app.routing.module';
 import {AdminModule} from './admin/admin.module';
 import {Router} from '@angular/router';
+import {LayoutModule} from './layout/layout.module';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import {Router} from '@angular/router';
         ProductModule,
         CartModule,
         ContactUsModule,
+        LayoutModule,
 
         AppRoutingModule
     ],

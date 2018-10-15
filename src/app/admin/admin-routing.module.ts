@@ -13,13 +13,18 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                canActivateChild: [AuthGuard],
+                canActivate: [AuthGuard],
                 children: [
                     { path: 'orders', component: OrdersComponent },
                 ]
             }
         ]
     }
+];
+
+export const adminRouterComponents = [
+    AdminComponent,
+    OrdersComponent
 ];
 
 @NgModule({
