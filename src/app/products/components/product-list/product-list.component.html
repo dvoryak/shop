@@ -2,7 +2,7 @@
     <div id="products" class="row list-group">
         <div class="item  col-xs-4 col-lg-4" *ngFor="let product of (productService.getProducts() | async)">
             <div class="thumbnail">
-                <img class="group list-group-image" src="{{product.img}}" alt=""/>
+                <img class="group list-group-image" (click)="onSelect(product)" src="{{product.img}}" alt=""/>
                 <div class="caption">
                     <h4 class="group inner list-group-item-heading">{{product.name}}</h4>
                     <p class="group inner list-group-item-text">{{product.description}}</p>
@@ -20,5 +20,3 @@
         </div>
     </div>
 </div>
-
-

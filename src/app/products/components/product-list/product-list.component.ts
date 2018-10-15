@@ -3,6 +3,7 @@ import {ProductService} from '../../service/product.service';
 import {Product} from '../../model/product.model';
 import {Category} from '../../../shared/category.enum';
 import {CartService} from '../../../cart/services/cart.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-product-list',
@@ -10,15 +11,13 @@ import {CartService} from '../../../cart/services/cart.service';
     styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-    title: 'Products';
     products: Promise<Product[]>;
     cartProducts: Product[];
 
-    @Output()
-    selectProduct: EventEmitter<Product> = new EventEmitter<Product>();
 
     constructor(public productService: ProductService,
-                private cartService: CartService) {
+                private cartService: CartService,
+                private router: Router) {
         cartService.findAll().subscribe((products) => this.cartProducts = products);
     }
 
@@ -27,7 +26,7 @@ export class ProductListComponent implements OnInit {
 
     onSelect(product: Product): void {
         console.log('Select and emit products');
-        this.selectProduct.emit(product);
+        this.router.navigate(['products/view', product.id]);
     }
 
     onBuy(product: Product): void {

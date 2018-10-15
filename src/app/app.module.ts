@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {ProductModule} from './products/components/product.module';
+import {ProductModule} from './products/product.module';
 import {CartModule} from './cart/components/cart.module';
 import { ContactUsComponent } from './contact-us/components/contact-us/contact-us.component';
 import {CoreModule} from './core/core.module';
@@ -18,7 +18,6 @@ import {LayoutModule} from './layout/layout.module';
     ],
     imports: [
         BrowserModule,
-        ProductModule,
         CartModule,
         ContactUsModule,
         LayoutModule,
@@ -29,7 +28,4 @@ import {LayoutModule} from './layout/layout.module';
     bootstrap: [AppComponent]
 })
 export class AppModule {
-    constructor(router: Router) {
-        console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
-    }
 }
