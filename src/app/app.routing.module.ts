@@ -3,8 +3,14 @@ import {RouterModule, Routes} from '@angular/router';
 import {ContactUsComponent} from './contact-us/components/contact-us/contact-us.component';
 import {LoginComponent} from './layout/components/login/login.component';
 import {PageNotFoundComponent} from './layout/components/page-not-found/page-not-found.component';
+import {ProductListComponent} from './products/components/product-list/product-list.component';
 
 const routes: Routes = [
+    {
+        path: '',
+        redirectTo: '/products',
+        pathMatch: 'full'
+    },
     {
         path: 'contact',
         component: ContactUsComponent,
@@ -13,7 +19,7 @@ const routes: Routes = [
     {
         path: 'admin',
         loadChildren: './admin/admin.module#AdminModule',
-        data: { title: 'Admin' }
+        data: {title: 'Admin'}
     },
     {
         path: 'login',
@@ -27,7 +33,7 @@ const routes: Routes = [
     {
         path: '**',
         component: PageNotFoundComponent,
-        data: { title: 'Page Not Found' }
+        data: {title: 'Page Not Found'}
     }
 ];
 
