@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "IPhone7",
+      "description": "Cool phone",
+      "price": 750,
+      "category": 0,
+      "img": "http://qps.ru/JrUca",
+      "isAvailable": true
+    },
+    {
+      "id": 1,
+      "name": "IPhone6",
+      "description": "Nice phone",
+      "price": 569,
+      "category": 0,
+      "img": "https://goo.gl/YWX5NG",
+      "isAvailable": true
+    }
+  ]
+}
