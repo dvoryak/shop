@@ -1,9 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../service/product.service';
 import {Product} from '../../model/product.model';
-import {Category} from '../../../shared/category.enum';
 import {CartService} from '../../../cart/services/cart.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
+import {AuthService} from '../../../core/services/auth.service';
 
 @Component({
     selector: 'app-product-list',
@@ -11,14 +11,16 @@ import {ActivatedRoute, Router} from '@angular/router';
     styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-    products: Promise<Product[]>;
+    products: Product[];
     cartProducts: Product[];
 
 
     constructor(public productService: ProductService,
                 private cartService: CartService,
-                private router: Router) {
+                private router: Router,
+                public auth: AuthService) {
         cartService.findAll().subscribe((products) => this.cartProducts = products);
+        productService.getProducts().then(data => this.products = data);
     }
 
     ngOnInit() {

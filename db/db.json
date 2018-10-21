@@ -10,12 +10,21 @@
       "isAvailable": true
     },
     {
-      "id": 1,
+      "id": 2,
       "name": "IPhone6",
       "description": "Nice phone",
       "price": 569,
       "category": 0,
       "img": "https://goo.gl/YWX5NG",
+      "isAvailable": true
+    },
+    {
+      "id":3,
+      "name": "Samsung S9",
+      "description": "Some description",
+      "price": 850,
+      "category": 0,
+      "img": "https://mobiphone.com.ua/image/cache/data/kitayskiy-samsung-galaxy-s9-650x650_0.jpg",
       "isAvailable": true
     }
   ]
