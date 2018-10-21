@@ -1,6 +1,7 @@
 import {Component, DoCheck, IterableDiffers, OnInit} from '@angular/core';
 import {CartService} from '../../services/cart.service';
 import {Product} from '../../../products/model/product.model';
+import {CartProduct} from '../../models/cart-product.model';
 
 @Component({
     selector: 'app-cart',
@@ -8,7 +9,7 @@ import {Product} from '../../../products/model/product.model';
     styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit, DoCheck {
-    products: Product[];
+    products: CartProduct[];
     totalAmount: number;
     totalCount: number;
 
@@ -21,6 +22,10 @@ export class CartComponent implements OnInit, DoCheck {
 
     removeAll(): void {
         this.cartService.removeAll();
+    }
+
+    removeById(id: number): void {
+        this.cartService.removeOneProduct(id);
     }
 
     ngDoCheck(): void {

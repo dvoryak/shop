@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Category } from '../../../shared/category.enum';
-import {Product} from '../../model/product.model';
-import {CartService} from '../../../cart/services/cart.service';
+import { Category } from '../shared/category.enum';
+import {Product} from './model/product.model';
+import {CartService} from '../cart/services/cart.service';
 
 @Component({
   selector: 'app-product',
