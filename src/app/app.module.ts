@@ -6,7 +6,8 @@ import {CartModule} from './cart/components/cart.module';
 import {ContactUsModule} from './contact-us/contact-us.module';
 import {AppRoutingModule} from './app.routing.module';
 import {LayoutModule} from './layout/layout.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {TimingInterceptor} from './core/interceptors/timing.inteceptor';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,13 @@ import {HttpClientModule} from '@angular/common/http';
 
         AppRoutingModule
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TimingInterceptor,
+            multi: true,
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
