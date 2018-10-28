@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CartService} from '../../services/cart.service';
 import {CartProduct} from '../../models/cart-product.model';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -38,8 +38,8 @@ export class ProcessOrderComponent implements OnInit, OnDestroy {
             pattern: 'Please make sure that you are in bound of following pattern mail@example',
             maxlength: 'Make sure that your name less then 30 characters'
         },
-        phone: {
-            required: 'Please enter your phone number',
+        phones: {
+            required: 'Please enter your phones number',
             maxlength: 'Make sure that your name less then 12 characters'
         }
     };
@@ -57,6 +57,14 @@ export class ProcessOrderComponent implements OnInit, OnDestroy {
         this.watchValueChanges();
     }
 
+    onAddPhone() {
+        (<FormArray>this.formGroup.get('phones')).push(this.buildPhoneGroup());
+    }
+
+    get phones(): FormArray {
+        return <FormArray>this.formGroup.get('phones');
+    }
+
     private buildForm() {
         this.formGroup = this.fb.group({
             firstName: ['',
@@ -71,9 +79,14 @@ export class ProcessOrderComponent implements OnInit, OnDestroy {
                 [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
                     Validators.maxLength(30)]
             ],
-            phone: ['',
-                [Validators.required, Validators.maxLength(12)]],
+            phones: this.fb.array([this.buildPhoneGroup()]),
             comment: ''
+        });
+    }
+
+    private buildPhoneGroup(): FormGroup {
+        return this.fb.group({
+            phone: ['', [Validators.required, Validators.maxLength(12)]]
         });
     }
 
@@ -83,20 +96,41 @@ export class ProcessOrderComponent implements OnInit, OnDestroy {
         Object.keys(controls).map((key) => {
             const subControl = controls[key];
             this.sub.add(subControl.valueChanges.subscribe(data => {
-                this.setValidationMessage(subControl, key);
+                this.processValidation(subControl, key);
             }));
         });
     }
 
-    private setValidationMessage(control: AbstractControl, controlName: string): void {
-        this.validationMessages[controlName] = '';
+    private processValidation(control: AbstractControl, controlName: string): void {
 
-        if ((control.touched) && control.errors) {
-            this.validationMessages[controlName] = Object.keys(control.errors)
+        if (control instanceof FormArray) {
+            let groupMsg = '';
+            control.controls.forEach(c => {
+                const group = (<FormGroup>c).controls;
+                const keys = Object.keys(group);
+                keys.forEach(key => {
+                    groupMsg = groupMsg + ' ' + this.setMessage(group[key], controlName);
+                });
+                this.validationMessages[controlName] = groupMsg;
+            });
+
+            return;
+        }
+
+        this.validationMessages[controlName] = this.setMessage(control, controlName);
+
+    }
+
+    private setMessage(control: AbstractControl, controlName: string): string {
+        if ((control.touched || control.dirty) && control.errors) {
+            return Object.keys(control.errors)
                 .map(key => this.validationMessagesTemplate[controlName][key])
                 .join(' ');
         }
+
+        return '';
     }
+
 
     ngOnDestroy(): void {
         this.sub.unsubscribe();
