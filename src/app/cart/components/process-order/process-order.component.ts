@@ -27,20 +27,20 @@ export class ProcessOrderComponent implements OnInit, OnDestroy {
         },
         city: {
             required: 'Please enter the city',
-            maxlength: 'Make sure that your name less then 10 characters'
+            maxlength: 'Make sure that city less then 10 characters'
         },
         address: {
             required: 'Please enter your address',
-            maxlength: 'Make sure that your name less then 50 characters'
+            maxlength: 'Make sure that your address less then 50 characters'
         },
         email: {
             required: 'Please enter your email',
             pattern: 'Please make sure that you are in bound of following pattern mail@example',
-            maxlength: 'Make sure that your name less then 30 characters'
+            maxlength: 'Make sure that your email less then 30 characters'
         },
         phones: {
-            required: 'Please enter your phones number',
-            maxlength: 'Make sure that your name less then 12 characters'
+            required: 'Please enter your phone number',
+            maxlength: 'Make sure that phone number less then 12 characters'
         }
     };
 
@@ -55,6 +55,10 @@ export class ProcessOrderComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.buildForm();
         this.watchValueChanges();
+    }
+
+    ngOnDestroy(): void {
+        this.sub.unsubscribe();
     }
 
     onAddPhone() {
@@ -131,13 +135,4 @@ export class ProcessOrderComponent implements OnInit, OnDestroy {
 
         return '';
     }
-
-    onBlur() {
-
-    }
-
-    ngOnDestroy(): void {
-        this.sub.unsubscribe();
-    }
-
 }
