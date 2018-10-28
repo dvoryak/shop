@@ -67,8 +67,8 @@ export class ProcessOrderComponent implements OnInit, OnDestroy {
 
     private buildForm() {
         this.formGroup = this.fb.group({
-            firstName: ['',
-                [Validators.required, Validators.maxLength(50)]],
+            firstName: new FormControl('',
+                {validators: [Validators.required, Validators.maxLength(3)], updateOn: 'blur'}),
             lastName: ['',
                 [Validators.required, Validators.maxLength(50)]],
             city: ['',
@@ -95,9 +95,10 @@ export class ProcessOrderComponent implements OnInit, OnDestroy {
 
         Object.keys(controls).map((key) => {
             const subControl = controls[key];
-            this.sub.add(subControl.valueChanges.subscribe(data => {
-                this.processValidation(subControl, key);
-            }));
+            this.sub.add(subControl.valueChanges
+                .subscribe(data => {
+                    this.processValidation(subControl, key);
+                }));
         });
     }
 
@@ -131,6 +132,9 @@ export class ProcessOrderComponent implements OnInit, OnDestroy {
         return '';
     }
 
+    onBlur() {
+
+    }
 
     ngOnDestroy(): void {
         this.sub.unsubscribe();
