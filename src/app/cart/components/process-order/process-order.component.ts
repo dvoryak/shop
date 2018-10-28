@@ -15,20 +15,37 @@ export class ProcessOrderComponent implements OnInit, OnDestroy {
 
     formGroup: FormGroup;
 
-    private validationMessages = {
+    private validationMessagesTemplate = {
         firstName: {
-            required: 'Please enter your email address.',
-            maxLength: 'Make sure that your name less then 50 characters'
+            required: 'Please enter your first name.',
+            maxlength: 'Make sure that your name less then 50 characters'
         },
 
         lastName: {
             required: 'Please enter your last name',
-            maxLength: 'Make sure that your name less then 50 characters'
+            maxlength: 'Make sure that your name less then 50 characters'
         },
+        city: {
+            required: 'Please enter the city',
+            maxlength: 'Make sure that your name less then 10 characters'
+        },
+        address: {
+            required: 'Please enter your address',
+            maxlength: 'Make sure that your name less then 50 characters'
+        },
+        email: {
+            required: 'Please enter your email',
+            pattern: 'Please make sure that you are in bound of following pattern mail@example',
+            maxlength: 'Make sure that your name less then 30 characters'
+        },
+        phone: {
+            required: 'Please enter your phone number',
+            maxlength: 'Make sure that your name less then 12 characters'
+        }
     };
 
     private sub: Subscription = new Subscription();
-    private validationMessage: string;
+    validationMessages = [];
 
     constructor(private cartService: CartService,
                 private fb: FormBuilder) {
@@ -43,15 +60,16 @@ export class ProcessOrderComponent implements OnInit, OnDestroy {
     private buildForm() {
         this.formGroup = this.fb.group({
             firstName: ['',
-               [Validators.required, Validators.maxLength(50)]],
+                [Validators.required, Validators.maxLength(50)]],
             lastName: ['',
                 [Validators.required, Validators.maxLength(50)]],
             city: ['',
-                [Validators.required, Validators.maxLength(50)]],
+                [Validators.required, Validators.maxLength(10)]],
             address: ['',
                 [Validators.required, Validators.maxLength(20)]],
             email: ['',
-                [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'), Validators.email]
+                [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
+                    Validators.maxLength(30)]
             ],
             phone: ['',
                 [Validators.required, Validators.maxLength(12)]],
@@ -60,23 +78,22 @@ export class ProcessOrderComponent implements OnInit, OnDestroy {
     }
 
     private watchValueChanges() {
-        const firstName = this.formGroup.get('firstName');
+        const controls = this.formGroup.controls;
 
-        const subFirstName = firstName.valueChanges.subscribe(data => {
-                this.setValidationMessage(firstName, 'firstName');
-            }
-        );
-
-        this.sub.add(subFirstName);
+        Object.keys(controls).map((key) => {
+            const subControl = controls[key];
+            this.sub.add(subControl.valueChanges.subscribe(data => {
+                this.setValidationMessage(subControl, key);
+            }));
+        });
     }
 
     private setValidationMessage(control: AbstractControl, controlName: string): void {
-        this.validationMessage = '';
+        this.validationMessages[controlName] = '';
 
-        if ((control.touched || control.dirty) && control.errors) {
-            console.log('e', control);
-            this.validationMessage = Object.keys(control.errors)
-                .map(key => this.validationMessages[controlName][key])
+        if ((control.touched) && control.errors) {
+            this.validationMessages[controlName] = Object.keys(control.errors)
+                .map(key => this.validationMessagesTemplate[controlName][key])
                 .join(' ');
         }
     }

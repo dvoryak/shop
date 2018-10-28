@@ -16,17 +16,20 @@
                        id="firstName"
                        placeholder="First Name"
                        formControlName="firstName">
-                <span class="help-block" *ngIf="validationMessage" >
-                    {{validationMessage}}
+                <span class="help-block" *ngIf="validationMessages['firstName']">
+                   {{validationMessages['firstName']}}
                 </span>
             </div>
             <div class="form-group col-md-6">
                 <label for="lastName">Last Name</label>
-                <input type="password"
+                <input type="text"
                        class="form-control"
                        id="lastName"
                        placeholder="Last Name"
                        formControlName="lastName">
+                <span class="help-block"  *ngIf="validationMessages['lastName']">
+                   {{validationMessages['lastName']}}
+                </span>
             </div>
             <div class="form-group col-md-12">
                 <label for="city">City</label>
@@ -35,6 +38,9 @@
                        id="city"
                        placeholder="City"
                        formControlName="city">
+                <span class="help-block"  *ngIf="validationMessages['city']">
+                   {{validationMessages['city']}}
+                </span>
             </div>
             <div class="form-group col-md-12">
                 <label for="address">Address</label>
@@ -43,6 +49,9 @@
                        id="address"
                        placeholder="Address"
                        formControlName="address">
+                <span class="help-block"  *ngIf="validationMessages['address']">
+                   {{validationMessages['address']}}
+                </span>
             </div>
             <div class="form-group col-md-12">
                 <label for="email">Email address</label>
@@ -51,6 +60,9 @@
                        id="email"
                        placeholder="Email address"
                        formControlName="email">
+                <span class="help-block"  *ngIf="validationMessages['email']">
+                   {{validationMessages['email']}}
+                </span>
             </div>
             <div class="form-group col-md-12">
                 <label for="phone">Phone number</label>
@@ -59,6 +71,9 @@
                        id="phone"
                        placeholder="Phone"
                        formControlName="phone">
+                <span class="help-block"  *ngIf="validationMessages['phone']">
+                   {{validationMessages['phone']}}
+                </span>
             </div>
             <div class="form-group col-md-12">
                 <label for="comment">Additional information</label>
