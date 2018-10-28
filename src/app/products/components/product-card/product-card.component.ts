@@ -19,15 +19,15 @@ export class ProductCardComponent implements OnInit {
     ngOnInit() {
         this.route.paramMap.subscribe(params => {
             this.id = parseInt(params.get('productId'), 10);
+
+
+            this.productService.getProducts()
+                .then(products => products.filter(product => {
+                    if (product.id === this.id) {
+                        this.product = product;
+                    }
+                }));
         });
-
-
-        this.productService.getProducts()
-            .then(products => products.filter(product => {
-                if (product.id === this.id) {
-                    this.product = product;
-                }
-            }));
     }
 
     onClose() {
