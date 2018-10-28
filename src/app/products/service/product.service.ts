@@ -1,28 +1,33 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Product} from '../model/product.model';
-import {Category} from '../../shared/category.enum';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {log} from 'util';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ProductService {
+    private url = 'http://localhost:3000/products';
 
-  products: Product[] =  [
-      new Product(1, 'IPhone7', 'Cool phone', 700, Category.MOBILE_PHONE, 'http://qps.ru/JrUca',
-          true),
-      new Product(2, 'IPhone6', 'Nice phone', 500, Category.MOBILE_PHONE, 'https://goo.gl/YWX5NG',
-          false)
-  ];
+    constructor(private http: HttpClient) {
+    }
 
-  private promise: Promise<Product[]> = Promise.resolve(this.products);
+    getProducts(): Promise<Product[]> {
+        return this.http.get<Product[]>(this.url)
+            .toPromise()
+            .then(data => <Product[]>data);
+    }
 
-  constructor() {
-  }
-  getProducts(): Promise<Product[]> {
-    return this.promise;
-  }
-  addProduct(product: Product): void {
-      this.products.push(product);
-  }
+    addProduct(product: Product): Promise<any> {
+        const url = this.url,
+            body = JSON.stringify(product),
+            options = {
+                headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+            };
+
+        return this.http
+            .post(url, body, options)
+            .toPromise();
+    }
+
 }

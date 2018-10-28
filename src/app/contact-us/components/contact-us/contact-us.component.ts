@@ -15,7 +15,7 @@ export class ContactUsComponent implements OnInit {
 
   constructor(private localeStorage: LocalStorageService,
               @Inject(Generator) private generator: Generator,
-              private configOption: ConfigOptionService,
+              public configOption: ConfigOptionService,
               private constants: ConstantsService
   ) { }
 
