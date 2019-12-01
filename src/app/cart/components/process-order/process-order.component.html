@@ -1,0 +1,110 @@
+<div class="panel-body">
+    <ul>
+        <li *ngFor="let product of products">
+            <app-cart-item [product]="product"></app-cart-item>
+        </li>
+    </ul>
+
+    <form class="form-horizontal"
+          [formGroup]="formGroup"
+          novalidate>
+        <div class="form-row">
+            <div class="form-group col-md-12"
+                 [ngClass]="{'has-error': validationMessages['firstName']}">
+                <label for="firstName">First Name</label>
+                <input type="email"
+                       class="form-control"
+                       id="firstName"
+                       placeholder="First Name"
+                       formControlName="firstName">
+                <span class="help-block" *ngIf="validationMessages['firstName']">
+                   {{validationMessages['firstName']}}
+                </span>
+            </div>
+            <div class="form-group col-md-12"
+                 [ngClass]="{'has-error': validationMessages['lastName']}">
+                <label for="lastName">Last Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="lastName"
+                       placeholder="Last Name"
+                       formControlName="lastName">
+                <span class="help-block" *ngIf="validationMessages['lastName']">
+                   {{validationMessages['lastName']}}
+                </span>
+            </div>
+            <div class="form-group col-md-12"
+                 [ngClass]="{'has-error': validationMessages['city']}">
+                <label for="city">City</label>
+                <input type="text"
+                       class="form-control"
+                       id="city"
+                       placeholder="City"
+                       formControlName="city">
+                <span class="help-block" *ngIf="validationMessages['city']">
+                   {{validationMessages['city']}}
+                </span>
+            </div>
+            <div class="form-group col-md-12"
+                 [ngClass]="{'has-error': validationMessages['address']}">
+                <label for="address">Address</label>
+                <input type="text"
+                       class="form-control"
+                       id="address"
+                       placeholder="Address"
+                       formControlName="address">
+                <span class="help-block" *ngIf="validationMessages['address']">
+                   {{validationMessages['address']}}
+                </span>
+            </div>
+            <div class="form-group col-md-12"
+                 [ngClass]="{'has-error': validationMessages['email']}">
+                <label for="email">Email address</label>
+                <input type="email"
+                       class="form-control"
+                       id="email"
+                       placeholder="Email address"
+                       formControlName="email">
+                <span class="help-block" *ngIf="validationMessages['email']">
+                   {{validationMessages['email']}}
+                </span>
+            </div>
+            <div formArrayName="phones"
+                 [ngClass]="{'has-error': (validationMessages['phones'] && validationMessages['phones'].trim().length > 0)}">
+                <label>Phone number</label>
+                <div *ngFor="let phone of phones.controls; let i = index" formGroupName="{{i}}">
+                    <div class="form-group col-md-10">
+                        <input type="text"
+                               class="form-control"
+                               id="{{'phone' + i}}"
+                               placeholder="Phone"
+                               formControlName="phone">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <button class="btn btn-primary"
+                                    type="button"
+                                    (click)="onAddPhone()">
+                                Add Another Phone
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <span class="help-block" *ngIf="validationMessages['phones']">
+                    {{validationMessages['phones']}}
+                    </span>
+            </div>
+            <div class="form-group col-md-12">
+                <label for="comment">Additional information</label>
+                <textarea class="form-control"
+                          id="comment"
+                          placeholder="Your comment or additional information"
+                          formControlName="comment">
+                </textarea>
+            </div>
+            <button type="submit"
+                    class="btn btn-primary"
+                    [disabled]="!formGroup.valid">Done</button>
+        </div>
+    </form>
+</div>
